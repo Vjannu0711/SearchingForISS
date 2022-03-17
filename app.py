@@ -74,7 +74,7 @@ def get_epoch_data(epoch: str):
 
     Returns:
     epoch_dict (dictionary): All information about a specific EPOCH in the positional and velocity data.
-"""
+    """
     logging.info("Querying route to obtain all information about EPOCH:/"+epoch) 
     for i in range(len(iss_epoch_data['ndm']['oem']['body']['segment']['data']['stateVector'])):
         if epoch == iss_epoch_data['ndm']['oem']['body']['segment']['data']['stateVector'][i]['EPOCH']:
