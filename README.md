@@ -34,14 +34,35 @@ COPY . /app
 ENTRYPOINT ["python"]
 CMD ["app.py"]
 ```
-6) To build the container, type and modify this command to reflect your username and file name: `docker build -t <username>/flask-helloworld:latest .`
+6) To build the container, type and modify this command to reflect your username and file name: `docker build -t <username>/<file-name>:latest .`
+7) To push the container, type and enter: `docker push <username>/<file-name>:latest`
 
+### Pull a Working Container from Dockerhub (Instructions):
+1) To pull a working container from Dockerhub, simply type and enter: `docker pull <username>/<file-name>:latest`
 
-### Pull a Working Container from Dockerhub (Step-by-Step Instructions):
+### Interact with ALL Routes in the Application using Curl (Step-by-Step Instructions) & Interpretation of Values Returned:
 
-### Interact with ALL Routes in the Application using Curl (Step-by-Step Instructions):
-
-### Interpretation of Values Returned:
+1) Run this set of commands. The first three are presented below. Type each one and hit enter:
+```
+export FLASK_APP=app.py
+export FLASK_ENV=development
+flask run -p 5000
+```
+2) Open a second terminal and log into TACC. Then, run this command: `curl localhost:5000/read_data -X POST` This command will load and read all of the data from both XML files.
+3) Next, you can interact with the routes and achieve your desired output. Here is a list of the routes below:
+```
+**ROUTE**                                              **VALUES RETURNED**
+/epochs                                                lists all epochs
+/epochs/<epoch>                                        lists all data associated with a specific epoch
+/countries                                             lists all countries in sighting data
+/countries/<country>                                   lists all data for a specific country
+/countries/<country>/regions                           lists all regions in a specific country
+/countries/<country>/regions/<regions>                 lists all data for a specific region
+/countries/<country>/regions/<regions>/cities          lists all cities in a specific region
+/countries/<country>/regions/<regions>/cities/<city>   lists all data for a specific city
+```
+4) Note that in order to run these routes shown above to the left side of the table, you must first type `curl localhost:5000` followed by one of these 8 route commands. If the terminal returns an error, that means you simply need to re-enter the read_data command from Step 2 and then enter the route command on the next line.
+5) The right column of the table above shows the given values returned from each application route.
 
 ### Citations (MLA):
 
