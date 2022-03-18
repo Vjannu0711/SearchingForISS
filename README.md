@@ -17,6 +17,25 @@ This project aims to automate the process of sifting through large and often com
 8) In the terminal, enter this command: `wget https://nasa-public-data.s3.amazonaws.com/iss-coords/2022-02-13/ISS_sightings/XMLsightingData_citiesUSA07.xml`
 
 ### Build Container from Dockerfile (Step-by-Step Instructions):
+1) In the terminal, type and hit enter on this command: `touch Dockerfile`
+2) Additionally, we need to specify the requirements of our Flask application. To do this, type and hit enter on this command: `emacs requirements.txt`. This will create a brand new requirements text file.
+3) In this file, type this command: `Flask==2.0.3` and then save and exit from the file. This is the only line of code that you need in the file.
+4) Let's modify the Dockerfile by entering `emacs Dockerfile` in the terminal.
+5) Enter the following lines of code:
+```
+FROM python:3.9
+
+RUN mkdir /app
+WORKDIR /app
+COPY requirements.txt /app/requirements.txt
+RUN pip install -r /app/requirements.txt
+COPY . /app
+
+ENTRYPOINT ["python"]
+CMD ["app.py"]
+```
+6) To build the container, type and modify this command to reflect your username and file name: `docker build -t <username>/flask-helloworld:latest .`
+
 
 ### Pull a Working Container from Dockerhub (Step-by-Step Instructions):
 
