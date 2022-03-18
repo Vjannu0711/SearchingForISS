@@ -52,17 +52,58 @@ flask run -p 5000
 3) Next, you can interact with the routes and achieve your desired output. Here is a list of the routes below:
 ```
 **ROUTE**                                              **VALUES RETURNED**
-/epochs                                                lists all epochs
-/epochs/<epoch>                                        lists all data associated with a specific epoch
+/EPOCH                                                 lists all epochs
+/EPOCH/<epoch>                                         lists all data associated with a specific epoch
 /countries                                             lists all countries in sighting data
-/countries/<country>                                   lists all data for a specific country
-/countries/<country>/regions                           lists all regions in a specific country
-/countries/<country>/regions/<regions>                 lists all data for a specific region
-/countries/<country>/regions/<regions>/cities          lists all cities in a specific region
-/countries/<country>/regions/<regions>/cities/<city>   lists all data for a specific city
+/COUNTRY/<country>                                     lists all data for a specific country
+/COUNTRY/<country>/regions                             lists all regions in a specific country
+/COUNTRY/<country>/regions/<regions>                   lists all data for a specific region
+/COUNTRY/<country>/regions/<regions>/cities            lists all cities in a specific region
+/COUNTRY/<country>/regions/<regions>/cities/<city>     lists all data for a specific city
 ```
 4) Note that in order to run these routes shown above to the left side of the table, you must first type `curl localhost:5000` followed by one of these 8 route commands. If the terminal returns an error, that means you simply need to re-enter the read_data command from Step 2 and then enter the route command on the next line.
 5) The right column of the table above shows the given values returned from each application route.
+
+Sample Input: `curl localhost:5012/COUNTRY/United_States/regions/New_York/cities/Yonkers`
+Sample Output:
+```
+[
+  {
+    "spacecraft": "ISS",
+    "sighting_date": "Thu Feb 17/05:41 AM",
+    "duration_minutes": "5",
+    "max_elevation": "18",
+    "enters": "10 above S",
+    "exits": "10 above E",
+    "utc_offset": "-5.0",
+    "utc_time": "10:41",
+    "utc_date": "Feb 17, 2022"
+  },
+  {
+    "spacecraft": "ISS",
+    "sighting_date": "Sat Feb 19/05:40 AM",
+    "duration_minutes": "7",
+    "max_elevation": "50",
+    "enters": "10 above SW",
+    "exits": "10 above ENE",
+    "utc_offset": "-5.0",
+    "utc_time": "10:40",
+    "utc_date": "Feb 19, 2022"
+  },
+  {
+    "spacecraft": "ISS",
+    "sighting_date": "Sun Feb 20/04:54 AM",
+    "duration_minutes": "4",
+    "max_elevation": "28",
+    "enters": "24 above SSE",
+    "exits": "10 above ENE",
+    "utc_offset": "-5.0",
+    "utc_time": "09:54",
+    "utc_date": "Feb 20, 2022"
+  },
+  ```
+
+We can see from the above sample input and output that we have requested information about all of the sightings in the city of Yonkers in the region of New York in the country of the USA. A plethora of information on each sighting entry is provided including the name of the spacecraft, the date of the sighting, duration, maximum elevation, enters, exits, UTC time offset, and UTC time and date.
 
 ### Citations (MLA):
 
